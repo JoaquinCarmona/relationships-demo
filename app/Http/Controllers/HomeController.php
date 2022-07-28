@@ -14,14 +14,14 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $countries = Country::with('cities.addresses')->get();
+        $countries = Country::with('payments')->get();
         return view('countries',compact('countries'));
     }
 
     public function getAddresses()
     {
 
-        $addresses = Address::all();
+        $addresses = Address::with('country')->get();
         return view('addresses',compact('addresses'));
     }
 
@@ -34,7 +34,7 @@ class HomeController extends Controller
 
     public function getPayments()
     {
-        $payments = Payment::all();
+        $payments = Payment::with('country')->get();
         return view('payments',compact('payments'));
     }
 
