@@ -13,13 +13,4 @@ class Country extends Model
         return $this->hasMany(City::class);
     }
 
-    public function addresses()
-    {
-        return $this->hasManyThrough(Address::class,City::class);
-    }
-
-    public function payments()
-    {
-        return $this->hasManyDeep(Payment::class,[City::class,Address::class,Customer::class]);
-    }
 }

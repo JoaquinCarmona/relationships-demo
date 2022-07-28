@@ -14,51 +14,14 @@ class HomeController extends Controller
 {
     public function index()
     {
-        /*
-         * 1915 Models, 112 queries
         $countries = Country::with('cities.addresses')->get();
-        return view('countries',compact('countries'));
-        */
-
-
-        /*
-         * 712 Models, 2 Queries
-
-        $countries = Country::with('addresses')->get();
-        return view('countries',compact('countries'));
-        */
-
-        /*
-         * 109 Models, 1 Queries
-
-        $countries = Country::withCount('addresses')->get();
-        return view('countries',compact('countries'));
-        */
-
-        $countries = Country::with('payments')->get();
         return view('countries',compact('countries'));
     }
 
     public function getAddresses()
     {
-        /*
-         * 1809 Models, 1207 Queries
-         */
-        //$addresses = Address::all();
-        //return view('addresses',compact('addresses'));
 
-
-        /*
-         * 1311 Models, 3 Queries
-
-        $addresses = Address::with('city.country')->get();
-        return view('addresses',compact('addresses'));
-        */
-
-        /*
-         *  1202 Models, 2 Queries
-         */
-        $addresses = Address::with('country')->get();
+        $addresses = Address::all();
         return view('addresses',compact('addresses'));
     }
 
@@ -71,7 +34,7 @@ class HomeController extends Controller
 
     public function getPayments()
     {
-        $payments = Payment::with('country')->get();
+        $payments = Payment::all();
         return view('payments',compact('payments'));
     }
 
